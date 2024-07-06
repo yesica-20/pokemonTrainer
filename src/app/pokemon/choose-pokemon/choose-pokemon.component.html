@@ -1,0 +1,45 @@
+<div class="flex justify-center">
+    <form class="max-w-md mx-auto">
+        <h1 class="mb-3 text-center text-color font-bold wd-1/2">POKEMON</h1>
+        <span class="block mb-3 text-center">Selecciona 3 pokemones para que sean parte de tu equipo</span>
+        <label for="default-search" class="block mt-5 mb-2 text-sm font-medium text-gray-900 sr-only dark:text-blue">Search</label>
+        <div class="relative">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                </svg>
+            </div>
+            <input id="default-search" type="text" [value]="searchPokemon" (keyup)="filterPokemons($event)" class="block w-full py-2 pl-10 pr-3 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-0 placeholder-gray-500 dark:placeholder-gray-400 sm:text-sm bg-gray-100" placeholder="Search...">
+        </div>
+    </form>
+</div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-5">
+    <a
+      *ngFor="let pokemon of pokemons"
+      class="relative block w-32 p-3 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+      (click)="toggleSelection(pokemon)"
+      [class.selected-card]="pokemon.selected"
+    >
+      <div class="relative">
+        <img
+          [src]="pokemon.img"
+          alt="Imagen de perfil"
+          class="w-full h-32 object-cover pokemon-image"
+        />
+      </div>
+      <button
+        class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 px-4 py-2 bg-pokemon-blue text-white rounded-full shadow-md"
+      >
+        #00{{ pokemon.id }} {{ pokemon.name }}
+      </button>
+    </a>
+   
+  </div>
+<button>Guardar</button>
+
+  
+  
+  
+  
+  

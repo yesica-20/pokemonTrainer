@@ -1,0 +1,25 @@
+<div class="max-w-sm rounded overflow-hidden shadow-lg bg-yellow-500 flex flex-col items-center justify-center">
+    <h1 class="text-center text-white text-2xl font-bold py-4">Imagen Perfil</h1>
+    <div class="w-24 h-24 rounded-full bg-white flex items-center justify-center overflow-hidden">
+        <div *ngIf="!imageUrl">
+          <img src="images/user.png" alt="Imagen de perfil" class="w-full h-full object-cover">
+        </div>
+        <div *ngIf="imageUrl">
+          <img [src]="imageUrl" alt="Imagen cargada" class="w-full h-full object-cover">
+        </div>
+      </div>
+      
+      
+    <div class="px-6 py-4">
+          <div>
+            <input type="file" (change)="onFileSelected($event)" id="fileInput" style="display: none;">
+            <label for="fileInput" class="cursor-pointer bg-gray-200 px-4 py-2 rounded-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+              </svg>
+              Adjuntar una foto
+            </label>
+          </div>
+    </div>
+  </div>
+  

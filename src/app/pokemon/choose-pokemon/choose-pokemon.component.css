@@ -1,0 +1,45 @@
+.relative {
+    position: relative;
+  }
+  
+  img {
+    position: relative;
+    z-index: 10;
+  }
+  .text-color{
+    color:rgba(1, 66, 106, 1)
+  }
+  button {
+    position: absolute;
+    bottom: -1rem; 
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    background-color: rgba(1, 66, 106, 1); 
+    color: white; 
+    border-radius: 9999px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    width: 10rem;
+   
+  }
+  .pokemon-image {
+    transition: transform 0.3s ease; 
+  }
+  
+  .pokemon-image:hover {
+    transform: scale(1.1) rotateY(10deg); 
+  }
+  
+  .relative {
+    perspective: 1000px;
+  }
+  
+  .absolute {
+    transform-style: preserve-3d; 
+  }
+  .selected-card {
+    background-color: rgba(255, 198, 0, 1);
+   
+  }
