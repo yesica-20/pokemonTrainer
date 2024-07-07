@@ -19,18 +19,7 @@ export class ProfileImageComponent {
     this.previewImage();
   }
 
-  // previewImage() {
-  //   const reader = new FileReader();
-  //   reader.onload = () => {
-  //     this.imageUrl = reader.result;
-  //     console.log('readerr',reader.result)
-  //   };
-  //   if (this.selectedFile) {
-  //     reader.readAsDataURL(this.selectedFile);
-  //   }
-  //   localStorage.setItem('profileImage', reader.result);
-  //   //localStorage.setItem('profileImage', JSON.stringify(this.selectedFile));
-  // }
+
   previewImage() {
     if (!this.selectedFile) {
       console.error('No se ha seleccionado ningún archivo.');
@@ -56,13 +45,6 @@ export class ProfileImageComponent {
     reader.readAsDataURL(this.selectedFile);
   }
   
-  uploadImage() {
-    // Aquí implementarías la lógica para subir la imagen al servidor
-    // Puedes usar HttpClient de Angular para hacer una solicitud POST al backend
-    // Por ejemplo:
-    // this.http.post('url_del_backend', formData).subscribe(response => {
-    //   console.log('Imagen subida exitosamente', response);
-    // });
-  }
+
 
 }

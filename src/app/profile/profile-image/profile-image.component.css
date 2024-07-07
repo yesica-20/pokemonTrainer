@@ -4,3 +4,7 @@
    object-fit: cover; 
    object-position: center;
   }
+
+  .bg-custom{
+   background-color: #E7EFF5;
+  }

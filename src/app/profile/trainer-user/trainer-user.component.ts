@@ -41,10 +41,8 @@ export class TrainerUserComponent {
   }
   loadSavedImage(): void {
     let savedImage = localStorage.getItem('profileImage');
-   // savedImage =JSON.parse(savedImage)
     console.log('typ',typeof savedImage)
     if (savedImage) {
-      // Crear una URL segura a partir del Base64
       this.imageUrl = savedImage;
     }
   }

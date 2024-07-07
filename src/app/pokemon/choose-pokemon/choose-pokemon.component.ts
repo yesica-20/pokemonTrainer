@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PokemonesService } from '../../domains/shared/services/pokemones.service';
+import { Router,NavigationExtras  } from '@angular/router';
 // import { SwiperModule } from 'swiper/core';
 // import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper/core';
 import { FormsModule } from '@angular/forms';
@@ -8,8 +9,10 @@ import { FormsModule } from '@angular/forms';
 interface Pokemon {
   id: number;
   name: string;
-  image: string;
+  img: object;
   selected: boolean;
+  type:any;
+  abilities:any
 }
 @Component({
   selector: 'app-choose-pokemon',
@@ -24,7 +27,7 @@ export class ChoosePokemonComponent {
   searchPokemon:string ='';
   allPokemons:any[]=[];
   selectedPokemons: Pokemon[] = [];
-  constructor(private pokemonesService: PokemonesService) {}
+  constructor(private pokemonesService: PokemonesService,private router: Router) {}
   ngOnInit() {
     this.getPokemons();
   }
@@ -54,7 +57,9 @@ export class ChoosePokemonComponent {
             name:data.name,
             img:data.sprites.front_default,
             id:data.id,
-            type:data.types
+            type:data.types,
+            abilities:data.abilities
+
             }
           this.pokemons.push(listPokemon);
           this.allPokemons=this.pokemons
@@ -91,6 +96,13 @@ export class ChoosePokemonComponent {
       this.selectedPokemons.splice(index, 1);
     }
   }
-
+  goToListPokemon() {
+    const navigationExtras: NavigationExtras = {
+      state: {
+        selectedPokemons: this.selectedPokemons
+      }
+    };
+    this.router.navigate(['list-pokemon'], navigationExtras);
+  }
   
 }

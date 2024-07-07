@@ -14,4 +14,7 @@ private http = inject(HttpClient);
   getPokemonDetails(url: string): any {
     return this.http.get<any>(url);
   }
+  getPokemonColor(id: string): any {
+    return this.http.get('https://pokeapi.co/api/v2/contest-type/1/')
+  }
 }
