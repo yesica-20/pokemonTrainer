@@ -2,45 +2,43 @@
     <div class="flex items-center mb-5">
         <h2 class="text-xl text-color font-semibold">Mis Pokémon</h2>
         <button (click)="editPokemon()" class="border border-blue-500 bg-white hover:bg-blue-500 hover:text-white text-blue-500 font-bold py-2 px-6 rounded-full ml-52 inline-flex items-center">
-            <svg class="h-4 w-4 text-blue-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg class="h-4 w-4 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
-              </svg>
-          Editar
+            </svg>
+            Editar
         </button>
-      </div>
-    <div class="space-y-3 cards w-10/12">
-      <div *ngFor="let pokemon of selectedPokemons" class="border rounded-lg shadow-md mb-4 flex">
-        <div class="flex-shrink-0">
-          <img [src]="pokemon.img" alt="Pokemon Image" class=" h-64 md:h-auto w-10/12">
-          <div class="flex flex-col justify-center pl-4">
-            <h3 class="text-xl font-bold text-center mb-2">{{capitalLetter(pokemon.name)}}</h3>
-            <div class="flex justify-center mb-4">
-              <ng-container *ngFor="let typePokemon of pokemon.type">
-                <span class="px-2 py-1 text-black text-lg mr-2">{{ typePokemon.type.name }}</span>
-              </ng-container>
-            </div>
-          </div>
-        </div>
-    
-        <div class="flex flex-col justify-center pl-4">
-          <div class="p-4">
-            <div *ngFor="let abilityPokemon of pokemon.abilities" class="mb-4">
-              <div class="flex items-center mb-1">
-                <div class="w-1/2">
-                  <span class="text-base font-medium text-black-700 dark:text-white">{{ abilityPokemon.ability.name }}</span>
-                </div>
-                <div class="w-1/2 pl-4">
-
-                  <div class="w-24 bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                    <div class="h-full" [style.backgroundColor]="getColorForType(pokemon.type[0].type.name)">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
-  
+    <div class="space-y-3 cards w-10/12">
+        <div *ngFor="let pokemon of selectedPokemons" class="border rounded-lg shadow-md mb-4 flex">
+            <div class="flex-shrink-0">
+                <img [src]="pokemon.img" alt="Pokemon Image" class="h-64  w-10/12">
+                <div class="flex flex-col justify-center items-center pl-4"> <!-- Añadido items-center para centrar verticalmente -->
+                    <h3 class="text-xl font-bold text-center mb-2">{{ capitalLetter(pokemon.name) }}</h3>
+                    <div class="flex justify-center mb-4">
+                        <ng-container *ngFor="let typePokemon of pokemon.type">
+                            <span class="px-2 py-1 text-black text-lg mr-2">{{ typePokemon.type.name }}</span>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col justify-center pl-4 flex-1"> <!-- Añadido flex-1 para ocupar todo el espacio disponible -->
+                <div class="p-8">
+                    <div *ngFor="let abilityPokemon of pokemon.stats" class="mb-4">
+                        <div class="flex items-center mb-1">
+                            <div class="w-1/2">
+                                <span class="text-base font-medium text-black-700 dark:text-white">{{ abilityPokemon.stat.name }}</span>
+                            </div>
+                            <div class="w-1/2 pl-4">
+                                <div class="w-24 bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                                    <div class="h-full rounded-full" [style.width]="calculateWidth(abilityPokemon.base_stat, getStatLimit(abilityPokemon.stat.name))" [style.backgroundColor]="getColorForType(pokemon.type[0].type.name)">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

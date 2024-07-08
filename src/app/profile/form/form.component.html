@@ -5,7 +5,6 @@
     </h1>
     <span class="block mb-4">Completa la siguiente información para completar tu perfil</span>
 
- 
     <div class="mb-5 relative">
       <label for="name" class="absolute top-0 left-2 -mt-2 px-1 bg-white text-blue-600 text-xs font-bold">Nombre*</label>
       <input
@@ -16,13 +15,16 @@
         placeholder="Nombre"
         (focus)="myForm.controls['name'].markAsTouched()"
       />
+      <div *ngIf="myForm.get('name')?.errors?.['required'] && (myForm.get('name')?.touched || myForm.get('name')?.dirty)"
+           class="text-red-500 text-xs mt-1">
+           The name is required.
+      </div>
       <div *ngIf="myForm.get('name')?.errors?.['pattern'] && (myForm.get('name')?.touched || myForm.get('name')?.dirty)"
            class="text-red-500 text-xs mt-1">
-        Ingresa solo letras y espacios.
+           Enter only letters.
       </div>
     </div>
 
-   
     <div class="mb-5 relative">
       <label for="hobby" class="absolute top-0 left-2 -mt-2 px-1 bg-white text-blue-600 text-xs font-bold">Pasatiempo favorito</label>
       <input
@@ -35,7 +37,6 @@
       />
     </div>
 
-   
     <div class="mb-5 relative">
       <label for="birthday" class="absolute top-0 left-2 -mt-2 px-1 bg-white text-blue-600 text-xs font-bold">Cumpleaños*</label>
       <input
@@ -46,8 +47,11 @@
         placeholder="Cumpleaños"
         (focus)="myForm.controls['birthday'].markAsTouched()"
       />
+      <div *ngIf="myForm.get('birthday')?.errors?.['required'] && (myForm.get('birthday')?.touched || myForm.get('birthday')?.dirty)"
+           class="text-red-500 text-xs mt-1">
+        El cumpleaños es obligatorio.
+      </div>
     </div>
-
 
     <div class="mb-5 relative">
       <label for="document" class="absolute top-0 left-2 -mt-2 px-1 bg-white text-blue-600 text-xs font-bold">Documento*</label>
@@ -61,7 +65,6 @@
       />
     </div>
 
-   
     <button
       type="submit"
       [ngClass]="{ 'bg-blue-700': myForm.valid, 'bg-gray-400': !myForm.valid }"

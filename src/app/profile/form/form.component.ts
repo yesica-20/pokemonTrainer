@@ -20,7 +20,11 @@ export class FormComponent {
       name: ['', Validators.required],
       hobby: [''],
       birthday: ['', Validators.required],
-      document: ['', Validators.required],
+      document: [''],
+    });
+    this.myForm.get('birthday')?.valueChanges.subscribe((value) => {
+      this.isAdult = this.validateAge();
+      this.updateDocumentValidator();
     });
   }
 
@@ -29,6 +33,7 @@ export class FormComponent {
       this.isAdult = this.validateAge();
     });
   }
+
   validateAge() {
     let dateSelect = this.myForm.get('birthday')?.value;
     const birthDate = new Date(dateSelect);
@@ -55,6 +60,18 @@ export class FormComponent {
       };
       localStorage.setItem('userData', JSON.stringify(dataUser));
       this.router.navigate(['/select-pokemon']);
+    }
+  }
+
+  updateDocumentValidator(): void {
+    const documentControl = this.myForm.get('document');
+    if (documentControl) {
+      if (this.age < 18) {
+        documentControl.clearValidators();
+      } else {
+        documentControl.setValidators([Validators.required]);
+      }
+      documentControl.updateValueAndValidity();
     }
   }
 }

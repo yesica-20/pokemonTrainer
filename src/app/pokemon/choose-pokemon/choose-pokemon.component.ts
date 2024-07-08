@@ -59,7 +59,8 @@ export class ChoosePokemonComponent {
             img:data.sprites.front_default,
             id:data.id,
             type:data.types,
-            abilities:data.abilities
+            abilities:data.abilities,
+            stats:data.stats
 
             }
           this.pokemons.push(listPokemon);

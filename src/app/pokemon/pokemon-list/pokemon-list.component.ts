@@ -45,9 +45,9 @@ export class PokemonListComponent {
             return '#a8a878';
     }
 }
-calculateWidth(base_stat: number): number {
-  
-  return (base_stat / 255) * 100; 
+calculateWidth(baseStat: number,statLimit: number): string {
+  const percentage = (baseStat / statLimit) * 100;
+    return `${percentage}%`;
 }
 editPokemon(){
   this.router.navigate(['select-pokemon']);
@@ -56,6 +56,23 @@ capitalLetter(namePokemon:string){
   return namePokemon.replace(/^\w/, (c: string) => c.toUpperCase())
 
 }
-
+getStatLimit(statName: string): number {
+  switch (statName) {
+    case 'salud':
+      return 255;
+    case 'ataque':
+      return 19;
+    case 'defensa':
+      return 23;
+    case 'ataque especial':
+      return 194;
+    case 'defensa especial':
+      return 23;
+    case 'velocidad':
+      return 18;
+    default:
+      return 100; 
+  }
+}
 
 }
