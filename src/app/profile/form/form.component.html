@@ -1,75 +1,67 @@
 <div class="items-center justify-center">
   <form class="max-w-sm mx-auto" [formGroup]="myForm" (ngSubmit)="submitForm()">
-    <h1 class="text-color text-2xl font-" style="font-weight: 700">
+    <h1 class="text-color text-2xl font-bold mb-2">
       Tu información
     </h1>
-    <span class="mb-2">Completa la siguiente información</span><br />
-    <span class="mb-4">para completar tu perfil</span>
+    <span class="block mb-4">Completa la siguiente información para completar tu perfil</span>
 
-    <div class="mb-5 mt-3">
+ 
+    <div class="mb-5 relative">
+      <label for="name" class="absolute top-0 left-2 -mt-2 px-1 bg-white text-blue-600 text-xs font-bold">Nombre*</label>
       <input
         type="text"
+        id="name"
         formControlName="name"
-        class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        placeholder="Nombre*"
+        class="bg-gray-50 border border-blue-300 focus:border-blue-500 text-sm rounded-lg block w-full p-2.5 placeholder-transparent dark:placeholder-gray-400 dark:text-blue-500 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Nombre"
+        (focus)="myForm.controls['name'].markAsTouched()"
       />
-      <div
-        *ngIf="
-          myForm.get('name')?.invalid &&
-          (myForm.get('name')?.touched || myForm.get('name')?.dirty)
-        "
-        class="text-red-500 text-xs mt-1"
-      >
-        required field
+      <div *ngIf="myForm.get('name')?.errors?.['pattern'] && (myForm.get('name')?.touched || myForm.get('name')?.dirty)"
+           class="text-red-500 text-xs mt-1">
+        Ingresa solo letras y espacios.
       </div>
     </div>
 
-    <div class="mb-5">
+   
+    <div class="mb-5 relative">
+      <label for="hobby" class="absolute top-0 left-2 -mt-2 px-1 bg-white text-blue-600 text-xs font-bold">Pasatiempo favorito</label>
       <input
         type="text"
+        id="hobby"
         formControlName="hobby"
-        class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        placeholder="Pasatiempo favorito"
+        class="bg-gray-50 border border-blue-300 focus:border-blue-500 text-sm rounded-lg block w-full p-2.5 placeholder-transparent dark:placeholder-blue-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Pasatiempo favorito "
+        (focus)="myForm.controls['hobby'].markAsTouched()"
       />
     </div>
 
-    <div class="mb-5">
+   
+    <div class="mb-5 relative">
+      <label for="birthday" class="absolute top-0 left-2 -mt-2 px-1 bg-white text-blue-600 text-xs font-bold">Cumpleaños*</label>
       <input
         type="date"
+        id="birthday"
         formControlName="birthday"
-        class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        class="bg-gray-50 border border-blue-300 focus:border-blue-500 text-sm rounded-lg block w-full p-2.5 placeholder-transparent dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
         placeholder="Cumpleaños"
+        (focus)="myForm.controls['birthday'].markAsTouched()"
       />
-      <div
-        *ngIf="
-          myForm.get('birthday')?.invalid &&
-          (myForm.get('birthday')?.touched || myForm.get('birthday')?.dirty)
-        "
-        class="text-red-500 text-xs mt-1"
-      >
-        required field
-      </div>
     </div>
 
-    <div class="mb-5">
+
+    <div class="mb-5 relative">
+      <label for="document" class="absolute top-0 left-2 -mt-2 px-1 bg-white text-blue-600 text-xs font-bold">Documento*</label>
       <input
         type="text"
+        id="document"
         formControlName="document"
-        class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        class="bg-gray-50 border border-blue-300 focus:border-blue-500 text-sm rounded-lg block w-full p-2.5 placeholder-transparent dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
         placeholder="Documento"
+        (focus)="myForm.controls['document'].markAsTouched()"
       />
-      <div
-        *ngIf="
-          isAdult &&
-          myForm.get('document')?.invalid &&
-          (myForm.get('document')?.touched || myForm.get('document')?.dirty)
-        "
-        class="text-red-500 text-xs mt-1"
-      >
-        required field
-      </div>
     </div>
 
+   
     <button
       type="submit"
       [ngClass]="{ 'bg-blue-700': myForm.valid, 'bg-gray-400': !myForm.valid }"
