@@ -14,15 +14,21 @@ interface Pokemon {
 @Component({
   selector: 'app-pokemons',
   standalone: true,
-  imports: [TrainerUserComponent,PokemonListComponent,HeaderComponent,CommonModule,LoadingComponent],
+  imports: [
+    TrainerUserComponent,
+    PokemonListComponent,
+    HeaderComponent,
+    CommonModule,
+    LoadingComponent,
+  ],
   templateUrl: './pokemons.component.html',
-  styleUrl: './pokemons.component.css'
+  styleUrl: './pokemons.component.css',
 })
 export class PokemonsComponent {
   selectedPokemons: Pokemon[] = [];
-  viewPokemons:boolean = true;
-  name:any='';
-  isLoading:boolean=true;
+  viewPokemons: boolean = true;
+  userTrainer: any = '';
+  isLoading: boolean = true;
   constructor(private router: Router) {
     const navigation = this.router.getCurrentNavigation();
     if (navigation?.extras.state) {
@@ -30,14 +36,13 @@ export class PokemonsComponent {
     }
   }
   timeoutId: ReturnType<typeof setTimeout> = setTimeout(() => {
-    this.isLoading = false; 
-  }, 2000); 
+    this.isLoading = false;
+  }, 2000);
   ngOnInit() {
-    console.log('Selected Pokemons:', this.selectedPokemons);
-   
-   
+   let user:any = localStorage.getItem('userData');
+   this.userTrainer = JSON.parse(user);
   }
-  editProfile(){
+  editProfile() {
     this.router.navigate(['/']);
   }
 }

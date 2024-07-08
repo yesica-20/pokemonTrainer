@@ -13,7 +13,7 @@
         <div class="flex-shrink-0">
           <img [src]="pokemon.img" alt="Pokemon Image" class=" h-64 md:h-auto w-10/12">
           <div class="flex flex-col justify-center pl-4">
-            <h3 class="text-xl font-bold text-center mb-2">{{ pokemon.name }}</h3>
+            <h3 class="text-xl font-bold text-center mb-2">{{capitalLetter(pokemon.name)}}</h3>
             <div class="flex justify-center mb-4">
               <ng-container *ngFor="let typePokemon of pokemon.type">
                 <span class="px-2 py-1 text-black text-lg mr-2">{{ typePokemon.type.name }}</span>
@@ -27,7 +27,7 @@
             <div *ngFor="let abilityPokemon of pokemon.abilities" class="mb-4">
               <div class="flex items-center mb-1">
                 <div class="w-1/2">
-                  <span class="text-base font-medium text-blue-700 dark:text-white">{{ abilityPokemon.ability.name }}</span>
+                  <span class="text-base font-medium text-black-700 dark:text-white">{{ abilityPokemon.ability.name }}</span>
                 </div>
                 <div class="w-1/2 pl-4">
 

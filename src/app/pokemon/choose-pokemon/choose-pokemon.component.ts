@@ -41,7 +41,7 @@ export class ChoosePokemonComponent {
         this.getDetailsPokemon();
       },
       error: (err: any) => {
-        console.error('Error fetching pokemons', err);
+        console.error('An error occurred in getPokemons', err);
         this.isLoading = false;
       }
     });
@@ -54,7 +54,6 @@ export class ChoosePokemonComponent {
         this.pokemonesService
           .getPokemonDetails(element)
           .subscribe((data: any) => {
-            console.log("dataaa",data)
             let listPokemon = {
             name:data.name,
             img:data.sprites.front_default,
@@ -74,7 +73,7 @@ export class ChoosePokemonComponent {
           }
       });
     } catch (e) {
-      console.log('un error ha ocurrido', e);
+      console.log('An error occurred in getDetailsPokemon', e);
       this.isLoading = false;
     }
   }
@@ -92,7 +91,6 @@ export class ChoosePokemonComponent {
     }
   }
   toggleSelection(pokemon: any) {
-    console.log("pokemonse",pokemon)
     const index = this.selectedPokemons.findIndex((p) => p.id === pokemon.id);
     if (index === -1) {
       

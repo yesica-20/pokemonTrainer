@@ -37,7 +37,6 @@ export class TrainerUserComponent {
     const userData = localStorage.getItem('userData');
     if (userData) {
       this.trainerUser = JSON.parse(userData);
-      console.log('Loading data...', this.trainerUser.name);
     }
   }
   loadSavedImage(): void {

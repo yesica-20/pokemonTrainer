@@ -22,7 +22,7 @@ export class ProfileImageComponent {
 
   previewImage() {
     if (!this.selectedFile) {
-      console.error('No se ha seleccionado ningún archivo.');
+      console.error('No file has been selected.');
       return;
     }
   
@@ -31,15 +31,15 @@ export class ProfileImageComponent {
     reader.onload = () => {
       const result = reader.result;
       if (typeof result === 'string') {
-        this.imageUrl = result; // Establece la imagen previa en tu componente
-        localStorage.setItem('profileImage', result); // Guarda la imagen en localStorage como Base64
+        this.imageUrl = result;
+        localStorage.setItem('profileImage', result); 
       } else {
-        console.error('El resultado del FileReader no es una cadena.');
+        console.error('The result of the FileReader is not a string.');
       }
     };
     
     reader.onerror = (error) => {
-      console.error('Error al leer el archivo:', error);
+      console.error('Error reading file:', error);
     };
   
     reader.readAsDataURL(this.selectedFile);

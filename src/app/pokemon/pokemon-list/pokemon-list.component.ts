@@ -20,12 +20,12 @@ interface Pokemon {
 })
 export class PokemonListComponent {
   @Input() selectedPokemons: any[] = [];
-  name:any="";
+ 
   
   constructor(private pokemonesService: PokemonesService,private router: Router) {}
 
   ngOnInit() {
-    console.log('Selected Pokemons Hijo:', this.selectedPokemons[0].type[0].type.name);
+   
    
     
   }
@@ -52,7 +52,10 @@ calculateWidth(base_stat: number): number {
 editPokemon(){
   this.router.navigate(['select-pokemon']);
 }
+capitalLetter(namePokemon:string){
+  return namePokemon.replace(/^\w/, (c: string) => c.toUpperCase())
 
+}
 
 
 }
