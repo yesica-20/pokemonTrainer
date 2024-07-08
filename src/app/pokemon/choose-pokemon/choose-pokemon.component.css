@@ -9,7 +9,11 @@
   .text-color{
     color:rgba(1, 66, 106, 1)
   }
-  button {
+  .b-color{
+    background-color: rgba(1, 66, 106, 1); 
+    border-radius: 8888px; 
+  }
+  .button-card {
     position: absolute;
     bottom: -1rem; 
     left: 50%;

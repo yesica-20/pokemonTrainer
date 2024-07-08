@@ -1,4 +1,4 @@
-import { Component, effect } from '@angular/core';
+import { Component, effect,Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
@@ -17,6 +17,7 @@ interface TrainerUser {
   styleUrl: './trainer-user.component.css'
 })
 export class TrainerUserComponent {
+  @Input() viewPokemons:boolean=false;
   trainerUser: TrainerUser = { name: '', birthday: new Date(),hobby:'', document: '',age:0 };
   imageUrl: SafeUrl | null  = null;
 
@@ -41,7 +42,6 @@ export class TrainerUserComponent {
   }
   loadSavedImage(): void {
     let savedImage = localStorage.getItem('profileImage');
-    console.log('typ',typeof savedImage)
     if (savedImage) {
       this.imageUrl = savedImage;
     }

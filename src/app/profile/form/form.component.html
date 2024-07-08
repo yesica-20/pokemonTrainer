@@ -1,48 +1,82 @@
 <div class="items-center justify-center">
-    <form class="max-w-sm mx-auto" [formGroup]="myForm" (ngSubmit)="submitForm()">
-      <h1 class="text-color text-2xl font- " style="font-weight: 700;">Tu información</h1>
-      <span class="mb-2">Completa la siguiente información</span><br>
-      <span class="mb-4">para completar tu perfil</span>
-  
-      <div class="mb-5 mt-3">
-        <input type="text" formControlName="name"
-               class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-               placeholder="Nombre*" />
-        <div *ngIf="myForm.get('name')?.invalid && (myForm.get('name')?.touched || myForm.get('name')?.dirty)"
-             class="text-red-500 text-xs mt-1">required field
-        </div>
+  <form class="max-w-sm mx-auto" [formGroup]="myForm" (ngSubmit)="submitForm()">
+    <h1 class="text-color text-2xl font-" style="font-weight: 700">
+      Tu información
+    </h1>
+    <span class="mb-2">Completa la siguiente información</span><br />
+    <span class="mb-4">para completar tu perfil</span>
+
+    <div class="mb-5 mt-3">
+      <input
+        type="text"
+        formControlName="name"
+        class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Nombre*"
+      />
+      <div
+        *ngIf="
+          myForm.get('name')?.invalid &&
+          (myForm.get('name')?.touched || myForm.get('name')?.dirty)
+        "
+        class="text-red-500 text-xs mt-1"
+      >
+        required field
       </div>
-  
-      <div class="mb-5">
-        <input type="text" formControlName="hobby"
-               class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-               placeholder="Pasatiempo favorito" />
+    </div>
+
+    <div class="mb-5">
+      <input
+        type="text"
+        formControlName="hobby"
+        class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Pasatiempo favorito"
+      />
+    </div>
+
+    <div class="mb-5">
+      <input
+        type="date"
+        formControlName="birthday"
+        class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Cumpleaños"
+      />
+      <div
+        *ngIf="
+          myForm.get('birthday')?.invalid &&
+          (myForm.get('birthday')?.touched || myForm.get('birthday')?.dirty)
+        "
+        class="text-red-500 text-xs mt-1"
+      >
+        required field
       </div>
-  
-      <div class="mb-5">
-        <input type="date" formControlName="birthday"
-               class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-               placeholder="Cumpleaños" />
-        <div *ngIf="myForm.get('birthday')?.invalid && (myForm.get('birthday')?.touched || myForm.get('birthday')?.dirty)"
-             class="text-red-500 text-xs mt-1">required field
-        </div>
+    </div>
+
+    <div class="mb-5">
+      <input
+        type="text"
+        formControlName="document"
+        class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Documento"
+      />
+      <div
+        *ngIf="
+          isAdult &&
+          myForm.get('document')?.invalid &&
+          (myForm.get('document')?.touched || myForm.get('document')?.dirty)
+        "
+        class="text-red-500 text-xs mt-1"
+      >
+        required field
       </div>
-  
-      <div class="mb-5">
-        <input type="text" formControlName="document"
-               class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-               placeholder="Documento" />
-        <div *ngIf=" isAdult && myForm.get('document')?.invalid && (myForm.get('document')?.touched || myForm.get('document')?.dirty)"
-             class="text-red-500 text-xs mt-1">required field
-        </div>
-      </div>
-  
-      <button type="submit" 
+    </div>
+
+    <button
+      type="submit"
       [ngClass]="{ 'bg-blue-700': myForm.valid, 'bg-gray-400': !myForm.valid }"
       class="text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
-      [disabled]="!myForm.valid">
-Continuar
-</button>
-    </form>
-  </div>
-  
+      [disabled]="!myForm.valid"
+    >
+      Continuar
+    </button>
+  </form>
+</div>

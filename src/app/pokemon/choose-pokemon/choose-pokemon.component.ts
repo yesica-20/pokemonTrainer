@@ -27,26 +27,28 @@ export class ChoosePokemonComponent {
   searchPokemon:string ='';
   allPokemons:any[]=[];
   selectedPokemons: Pokemon[] = [];
+  selectedCount: number = 0;
+  isLoading:boolean = true;
   constructor(private pokemonesService: PokemonesService,private router: Router) {}
   ngOnInit() {
     this.getPokemons();
   }
   getPokemons() {
+    this.isLoading = true;
     this.pokemonesService.getPokemons().subscribe({
       next: (data: any) => {
-        console.log('typeee', typeof data, data.results);
         this.urlsArray = data.results.map((pokemon: any) => pokemon.url);
-        console.log('urlsArray', this.urlsArray);
-    
         this.getDetailsPokemon();
       },
       error: (err: any) => {
         console.error('Error fetching pokemons', err);
+        this.isLoading = false;
       }
     });
   }
   getDetailsPokemon() {
     const limitedUrls = this.urlsArray.slice(0, 9);
+    let pendingRequests = limitedUrls.length;
     try {
     limitedUrls.forEach((element) => {
         this.pokemonesService
@@ -64,9 +66,16 @@ export class ChoosePokemonComponent {
           this.pokemons.push(listPokemon);
           this.allPokemons=this.pokemons
           });
+          pendingRequests--;
+          if (pendingRequests === 0) {
+            setTimeout(() => {
+              this.isLoading = false;
+            }, 3000); 
+          }
       });
     } catch (e) {
       console.log('un error ha ocurrido', e);
+      this.isLoading = false;
     }
   }
   filterPokemons(event: KeyboardEvent) {
@@ -90,10 +99,12 @@ export class ChoosePokemonComponent {
       if (this.selectedPokemons.length < 3) {
         pokemon.selected = true;
         this.selectedPokemons.push(pokemon);
+        this.selectedCount++;
       }
     } else {
       pokemon.selected = false;
       this.selectedPokemons.splice(index, 1);
+      this.selectedCount--;
     }
   }
   goToListPokemon() {

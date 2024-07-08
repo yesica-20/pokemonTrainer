@@ -1,14 +1,17 @@
 <div class="max-w-sm bg-yellow-500 rounded overflow-hidden shadow-lg flex flex-col items-center justify-center" style="height: 70vh">
     <ng-container *ngIf="trainerUser">
-      <h1 class="text-white text-2xl font-bold py-4 text-color">{{ trainerUser.name }}</h1>
-      <div class="w-24 h-24 rounded-full bg-white flex items-center justify-center overflow-hidden">
+      <h1 *ngIf="viewPokemons === false" class="text-white text-2xl font-bold py-4 text-color">{{ trainerUser.name }}</h1>
+      <h1 *ngIf="viewPokemons === true" class="text-white text-lg font-bold py-4 text-color flex items-center">
+        Entrenador <img src="images/start.png" class="w-12 h-12 ml-1" alt="Icono de inicio" />
+      </h1><div class="w-24 h-24 rounded-full bg-white flex items-center justify-center overflow-hidden">
         <div *ngIf="imageUrl" class="mt-4">
             <img [src]="imageUrl " alt="Imagen cargada" class="w-full">
            
           </div>
       </div>
-      <h1 class="text-white text-2xl font-bold py-4">Pasatiempo: {{ trainerUser.hobby }}</h1>
-      <h1 class="text-white text-2xl font-bold py-4">Edad: {{ trainerUser.age }}</h1>
+      <h1 class="text-black text-2xl font-bold py-4 text-color">Pasatiempo:   {{ trainerUser.hobby }}</h1>
+      <h1 class="text-black text-2xl font-bold py-4 text-color">Edad:          {{ trainerUser.age }}</h1>
+      <h1 *ngIf="trainerUser.age > 18 && viewPokemons === true" class="text-black text-2xl font-bold py-4">Duid         {{ trainerUser.document }}</h1>
     </ng-container>
   </div>
   
